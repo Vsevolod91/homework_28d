@@ -1,7 +1,7 @@
 class Person():
     type_fio = str
     words_fio = 3
-    int_in_fio = 0
+    not_letter_in_fio = 0
     min_len_words_fio = 3
 
     type_age = int
@@ -12,15 +12,11 @@ class Person():
     min_weight = 25.0
 
     type_passport = str
-    num_in_passport = 10
+    not_num_in_passport = 0
     len_series = 4
     len_num = 6
 
     def __init__(self, fio, age, passport, weight):
-        self.__fio = "Ф И О"
-        self.__age = 14
-        self.__passport = "0000 000000"
-        self.__weight = 25.0
 
         if self.verify_fio(fio) == 4:
             self.__fio = fio
@@ -74,14 +70,14 @@ class Person():
         if cls.type_fio == type(value):
             checking += 1
         else:
-            raise TypeError ("ФИО должно быть строкой")
+            raise TypeError("ФИО должно быть строкой")
 
         if cls.words_fio == len(value.split(" ")):
             checking += 1
         else:
             raise TypeError("Неверный формат записи ФИО")
 
-        if cls.int_in_fio == len([x for x in value if x.isdigit() == True]):
+        if cls.not_letter_in_fio == len([x for x in value.split(" ") if x.isalpha() == False]):
             checking += 1
         else:
             raise TypeError("В ФИО можно использовать только буквенные символы")
@@ -89,7 +85,7 @@ class Person():
         if cls.min_len_words_fio == len([x for x in value.split(' ') if len(x) >= 1]):
             checking += 1
         else:
-            raise TypeError("В ФИО должен быть хотя бы по одному символу")
+            raise TypeError("В ФИО должно быть хотя бы по одному символу")
 
         return checking
 
@@ -97,15 +93,15 @@ class Person():
     def verify_age(cls, value):
         checking = 0
 
-        if cls.type_age == int:
+        if cls.type_age == type(value):
             checking += 1
         else:
-            raise TypeError ("Введите целое число")
+            raise TypeError("Введите целое число")
 
         if cls.min_age <= value <= cls.max_age:
             checking += 1
         else:
-            raise TypeError ("Возраст должен быть не меньше 14 и не больше 150")
+            raise TypeError("Возраст должен быть не меньше 14 и не больше 150")
 
         return checking
 
@@ -116,17 +112,17 @@ class Person():
         if cls.type_passport == type(value):
             checking += 1
         else:
-            raise TypeError ("Серия и номер паспорта должны быть строкой")
+            raise TypeError("Серия и номер паспорта должны быть строкой")
 
-        if cls.num_in_passport == len([x for x in value if x.isdigit() == True]):
+        if cls.not_num_in_passport == len([x for x in value.split(" ") if x.isdigit() == False]):
             checking += 1
         else:
-            raise TypeError ("В серии и номере паспорта должны быть только цифры")
+            raise TypeError("В серии и номере паспорта должны быть только цифры")
 
         if cls.len_series == len(value.split(" ")[0]):
             checking += 1
         else:
-            raise TypeError ("Введите серию паспорта из 4 цифр и номер паспорта из 6, разделенных пробелом")
+            raise TypeError("Введите серию паспорта из 4 цифр и номер паспорта из 6, разделенных пробелом")
 
         if cls.len_num == len(value.split(" ")[1]):
             checking += 1
@@ -142,12 +138,12 @@ class Person():
         if cls.type_weight == type(value):
             checking += 1
         else:
-            raise TypeError ("Введите вес с точностью до десятых, например, 65.0")
+            raise TypeError("Введите вес с точностью до десятых, например, 65.0")
 
         if cls.min_weight <= value:
             checking += 1
         else:
-            raise TypeError ("Вес должен быть не меньше 25 кг")
+            raise TypeError("Вес должен быть не меньше 25 кг")
 
         return checking
 
@@ -161,7 +157,7 @@ print(p.weight)
 p.fio = "Антон Павлович Чехов"
 p.age = 35
 p.passport = "1111 999999"
-p.weight = 65.0
+p.weight = 75.0
 
 print(p.fio)
 print(p.age)
