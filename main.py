@@ -18,13 +18,13 @@ class Person():
 
     def __init__(self, fio, age, passport, weight):
 
-        if self.verify_fio(fio) == 4:
+        if self.__verify_fio(fio) == 4:
             self.__fio = fio
-        if self.verify_age(age) == 2:
+        if self.__verify_age(age) == 2:
             self.__age = age
-        if self.verify_passport(passport) == 4:
+        if self.__verify_passport(passport) == 4:
             self.__passport = passport
-        if self.verify_weight(weight) == 2:
+        if self.__verify_weight(weight) == 2:
             self.__weight = weight
 
     @property
@@ -33,7 +33,7 @@ class Person():
 
     @fio.setter
     def fio(self, fio):
-        self.verify_fio(fio)
+        self.__verify_fio(fio)
         self.__fio = fio
 
     @property
@@ -42,7 +42,7 @@ class Person():
 
     @age.setter
     def age(self,age):
-        self.verify_age(age)
+        self.__verify_age(age)
         self.__age = age
 
     @property
@@ -51,7 +51,7 @@ class Person():
 
     @passport.setter
     def passport(self, passport):
-        self.verify_passport(passport)
+        self.__verify_passport(passport)
         self.__passport = passport
 
     @property
@@ -60,11 +60,11 @@ class Person():
 
     @weight.setter
     def weight(self, weight):
-        self.verify_weight(weight)
+        self.__verify_weight(weight)
         self.__weight = weight
 
     @classmethod
-    def verify_fio(cls, value):
+    def __verify_fio(cls, value):
         checking = 0
 
         if cls.__type_fio == type(value):
@@ -90,7 +90,7 @@ class Person():
         return checking
 
     @classmethod
-    def verify_age(cls, value):
+    def __verify_age(cls, value):
         checking = 0
 
         if cls.__type_age == type(value):
@@ -106,7 +106,7 @@ class Person():
         return checking
 
     @classmethod
-    def verify_passport(cls, value):
+    def __verify_passport(cls, value):
         checking = 0
 
         if cls.__type_passport == type(value):
@@ -132,7 +132,7 @@ class Person():
         return checking
 
     @classmethod
-    def verify_weight(cls, value):
+    def __verify_weight(cls, value):
         checking = 0
 
         if cls.__type_weight == type(value):
@@ -155,6 +155,11 @@ print(p.fio)
 print(p.age)
 print(p.passport)
 print(p.weight)
+
+def add_(x):
+    return x*5
+
+p.__verify_fio = add_(10)
 
 p.fio = "Антон Павлович Чехов"
 p.age = 35
